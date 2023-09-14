@@ -8,7 +8,7 @@ import org.springframework.data.repository.ListCrudRepository;
 
 public interface SummaryRepository  extends ListCrudRepository<SummaryEntity, Long> {
     SummaryEntity findByUserId(long userId); //不一定对！
-    @Modifying //specify query的,因为是update操作,所以要加一个!modifying
+    @Modifying
     @Query("UPDATE summary SET  time_differ = :timeDiffer WHERE user_id = :userId") //这里可能有问题
     void updateTimeDifferByUserId(Long userId, Long timeDiffer);
 }
