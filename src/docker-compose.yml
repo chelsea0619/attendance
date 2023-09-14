@@ -1,0 +1,19 @@
+#这一段不用自己写一般,去网上找一下就行,就是docker compose
+version: '3.8'
+
+services: #点这个绿色箭头直接运行docker
+  db:
+    image: postgres:15.2-alpine #镜像,去docker里找postgres这个数据库
+    environment:
+      POSTGRES_DB: attendance
+      POSTGRES_PASSWORD: secret
+      TZ: UTC
+    volumes:
+      - attendance-pg-local:/var/lib/postgresql/data
+      #代表在哪里,存在了local里面
+    ports:
+      - "5433:5432"
+      #前面的5432是自己的端口, 后面的5432是docker内部的端口号
+
+volumes:
+  attendance-pg-local:
