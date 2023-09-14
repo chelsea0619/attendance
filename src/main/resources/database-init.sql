@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS summary;
 DROP TABLE IF EXISTS timelogs;
 DROP TABLE IF EXISTS attendances;
-
+DROP TABLE IF EXISTS tests;
 CREATE TABLE attendances
 (
     id         SERIAL PRIMARY KEY   NOT NULL,
@@ -23,6 +23,13 @@ CREATE TABLE summary
     id          SERIAL PRIMARY KEY NOT NULL,
     user_id     INTEGER  UNIQUE   NOT NULL,
     time_differ  INTEGER
+);
+CREATE TABLE tests
+(
+    id          SERIAL PRIMARY KEY NOT NULL,
+    test_start  TIMESTAMP,
+    test_finish  TIMESTAMP
+--     test_duration  TIMESTAMP
 );
 
 

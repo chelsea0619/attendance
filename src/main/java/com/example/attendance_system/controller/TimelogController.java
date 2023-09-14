@@ -5,10 +5,7 @@ import com.example.attendance_system.model.RegisterBody;
 import com.example.attendance_system.service.AttendanceService;
 import com.example.attendance_system.service.TimelogService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +38,12 @@ public class TimelogController {
     public void summary(@RequestBody RegisterBody body) {
         AttendanceEntity attendance = attendanceService.getAttendanceByEmail(body.email());
         timelogService.summary(attendance.id());
+    }
+//    test part!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    @GetMapping("/teststart")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void teststart() {
+        timelogService.teststart();
     }
 
 }

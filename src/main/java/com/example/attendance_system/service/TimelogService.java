@@ -2,9 +2,11 @@ package com.example.attendance_system.service;
 
 import com.example.attendance_system.entity.AttendanceEntity;
 import com.example.attendance_system.entity.SummaryEntity;
+import com.example.attendance_system.entity.TestEntity;
 import com.example.attendance_system.entity.TimelogEntity;
 import com.example.attendance_system.repository.AttendanceRepository;
 import com.example.attendance_system.repository.SummaryRepository;
+import com.example.attendance_system.repository.TestRepository;
 import com.example.attendance_system.repository.TimelogRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ import java.time.format.DateTimeFormatter;
 public class TimelogService {
     private final TimelogRepository timelogRepository;
     private final SummaryRepository summaryRepository;
+    private final TestRepository testRepository;
 
-    public TimelogService(TimelogRepository timelogRepository,SummaryRepository summaryRepository) {
+    public TimelogService(TestRepository testRepository,TimelogRepository timelogRepository,SummaryRepository summaryRepository) {
 
         this.timelogRepository = timelogRepository;
         this.summaryRepository = summaryRepository;
+        this.testRepository= testRepository;
     }
 
     DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -40,7 +44,6 @@ public class TimelogService {
         LocalDateTime time2 = LocalDateTime.now();
         String localTime = df.format(time2);
         timelogRepository.updateTimeById(userId, localTime);
-
     }
     public void summary(long userId){
        SummaryEntity summaryentityfind = summaryRepository.findByUserId(userId);
@@ -60,5 +63,13 @@ public class TimelogService {
            summaryRepository.updateTimeDifferByUserId(userId,diffSeconds);
        }
 
+    }
+
+    //    test part!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void teststart(){
+        LocalDateTime time1 = LocalDateTime.now();
+        LocalDateTime time3 = LocalDateTime.now();
+        Duration duration = Duration.between(time1,time3);
+        testRepository.save(new TestEntity(null,time1,time3));
     }
 }
