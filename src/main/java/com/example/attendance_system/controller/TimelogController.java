@@ -33,17 +33,5 @@ public class TimelogController {
         timelogService.finishwork(attendance.id());
     }
 
-    @PostMapping("/summary")
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void summary(@RequestBody RegisterBody body) {
-        AttendanceEntity attendance = attendanceService.getAttendanceByEmail(body.email());
-        timelogService.summary(attendance.id());
-    }
-//    test part!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    @GetMapping("/teststart")
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void teststart() {
-        timelogService.teststart();
-    }
 
 }

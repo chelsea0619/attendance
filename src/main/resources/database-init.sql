@@ -13,24 +13,25 @@ CREATE TABLE timelogs
 (
     id          SERIAL PRIMARY KEY NOT NULL,
     user_id     INTEGER     NOT NULL,
-    start_work  TEXT,
-    finish_work    TEXT,
+    start_work  TIMESTAMP,
+    finish_work    TIMESTAMP,
+    total_time INTEGER,
     CONSTRAINT fk_attendance FOREIGN KEY (user_id) REFERENCES attendances (id) ON DELETE CASCADE
 );
 
-CREATE TABLE summary
-(
-    id          SERIAL PRIMARY KEY NOT NULL,
-    user_id     INTEGER  UNIQUE   NOT NULL,
-    time_differ  INTEGER
-);
-CREATE TABLE tests
-(
-    id          SERIAL PRIMARY KEY NOT NULL,
-    test_start  TIMESTAMP,
-    test_finish  TIMESTAMP
---     test_duration  TIMESTAMP
-);
+-- CREATE TABLE summary
+-- (
+--     id          SERIAL PRIMARY KEY NOT NULL,
+--     user_id     INTEGER  UNIQUE   NOT NULL,
+--     time_differ  INTEGER
+-- );
+
+-- CREATE TABLE tests
+-- (
+--     id          SERIAL PRIMARY KEY NOT NULL,
+--     test_start  TIMESTAMP,
+--     test_finish  TIMESTAMP
+-- );
 
 
 
